@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -6,11 +7,130 @@
   <title>Tournament.calc</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --surface2: #1a1a1a;
+      --border: #2a2a2a;
+      --accent: #e8ff00;
+      --accent2: #ff4d00;
+      --text: #f0f0f0;
+      --muted: #666;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Syne', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); min-height: 100vh; }
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg); border-bottom: 1px solid var(--border);
+      padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .logo { font-family: var(--font-display); font-size: 22px; letter-spacing: 2px; white-space: nowrap; }
+    .logo span { color: var(--accent); }
+    nav { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+    nav::-webkit-scrollbar { display: none; }
+    .nav-btn {
+      background: none; border: 1px solid transparent; color: var(--muted);
+      font-family: var(--font-mono); font-size: 11px; padding: 6px 12px; border-radius: 4px;
+      cursor: pointer; white-space: nowrap; transition: all 0.2s; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .nav-btn:hover { color: var(--text); border-color: var(--border); }
+    .nav-btn.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 700; }
+    main { padding: 20px; max-width: 600px; margin: 0 auto; }
+    .tab { display: none; }
+    .tab.active { display: block; }
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .section-header h2 { font-family: var(--font-display); font-size: 32px; letter-spacing: 2px; }
+    .match-info { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+    .btn-primary {
+      background: var(--accent); color: #000; border: none; padding: 10px 18px;
+      font-family: var(--font-mono); font-size: 12px; font-weight: 700; letter-spacing: 1px;
+      border-radius: 4px; cursor: pointer; text-transform: uppercase; transition: all 0.15s;
+    }
+    .btn-primary:hover { background: #fff; }
+    .btn-ghost {
+      background: none; color: var(--accent); border: 1px solid var(--accent);
+      padding: 8px 16px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px;
+      border-radius: 4px; cursor: pointer; text-transform: uppercase; transition: all 0.15s;
+    }
+    .btn-ghost:hover { background: var(--accent); color: #000; }
+    .btn-cancel {
+      background: none; color: var(--muted); border: 1px solid var(--border);
+      padding: 10px 18px; font-family: var(--font-mono); font-size: 12px;
+      border-radius: 4px; cursor: pointer; transition: all 0.15s;
+    }
+    .teams-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .team-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 16px; position: relative; transition: border-color 0.2s;
+    }
+    .team-card:hover { border-color: var(--accent); }
+    .team-card-name { font-family: var(--font-display); font-size: 20px; letter-spacing: 1px; margin-bottom: 8px; color: var(--accent); }
+    .team-card-players { font-family: var(--font-mono); font-size: 11px; color: var(--muted); line-height: 1.8; }
+    .team-delete { position: absolute; top: 10px; right: 10px; background: none; border: none; color: var(--muted); cursor: pointer; font-size: 14px; transition: color 0.15s; }
+    .team-delete:hover { color: var(--accent2); }
+    .empty-state { grid-column: 1/-1; text-align: center; padding: 40px 20px; color: var(--muted); font-family: var(--font-mono); font-size: 13px; border: 1px dashed var(--border); border-radius: 8px; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 14px; }
+    .modal h3 { font-family: var(--font-display); font-size: 24px; letter-spacing: 1px; }
+    .modal input[type="text"], .modal input[type="number"] {
+      background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
+      padding: 10px 14px; color: var(--text); font-family: var(--font-mono); font-size: 13px;
+      width: 100%; outline: none; transition: border-color 0.15s;
+    }
+    .modal input:focus { border-color: var(--accent); }
+    .modal label { font-family: var(--font-mono); font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .player-row { display: flex; gap: 8px; align-items: center; margin-top: 6px; }
+    .player-row input { flex: 1; }
+    .remove-player { background: none; border: 1px solid var(--border); color: var(--muted); width: 32px; height: 32px; border-radius: 4px; cursor: pointer; font-size: 12px; flex-shrink: 0; transition: all 0.15s; }
+    .remove-player:hover { border-color: var(--accent2); color: var(--accent2); }
+    .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 4px; }
+    .score-list { display: flex; flex-direction: column; gap: 10px; }
+    .score-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 12px; }
+    .score-team-name { font-family: var(--font-display); font-size: 18px; letter-spacing: 1px; }
+    .score-field { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .score-field label { font-family: var(--font-mono); font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .score-field input { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 8px; color: var(--text); font-family: var(--font-mono); font-size: 16px; font-weight: 500; width: 64px; text-align: center; outline: none; transition: border-color 0.15s; }
+    .score-field input:focus { border-color: var(--accent); }
+    .score-actions { margin-top: 24px; display: flex; justify-content: center; }
+    .score-actions .btn-primary { padding: 14px 40px; font-size: 13px; }
+    .leaderboard { display: flex; flex-direction: column; gap: 8px; }
+    .lb-row { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; display: grid; grid-template-columns: 40px 1fr auto auto; align-items: center; gap: 12px; transition: transform 0.2s; }
+    .lb-row:hover { transform: translateX(3px); }
+    .lb-row.rank-1 { border-color: #ffd700; background: rgba(255,215,0,0.05); }
+    .lb-row.rank-2 { border-color: #c0c0c0; }
+    .lb-row.rank-3 { border-color: #cd7f32; }
+    .lb-rank { font-family: var(--font-display); font-size: 22px; color: var(--muted); text-align: center; }
+    .lb-row.rank-1 .lb-rank { color: #ffd700; }
+    .lb-row.rank-2 .lb-rank { color: #c0c0c0; }
+    .lb-row.rank-3 .lb-rank { color: #cd7f32; }
+    .lb-name { font-family: var(--font-display); font-size: 20px; letter-spacing: 1px; }
+    .lb-kills { font-family: var(--font-mono); font-size: 11px; color: var(--muted); text-align: right; }
+    .lb-kills span { display: block; color: var(--accent2); font-size: 13px; font-weight: 500; }
+    .lb-points { font-family: var(--font-display); font-size: 26px; color: var(--accent); min-width: 60px; text-align: right; }
+    .rules-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 14px; display: flex; flex-direction: column; gap: 12px; }
+    .rules-card h4 { font-family: var(--font-display); font-size: 20px; letter-spacing: 1px; }
+    .hint { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+    .placement-grid { display: flex; flex-direction: column; gap: 8px; }
+    .placement-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; align-items: center; }
+    .placement-row input { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; color: var(--text); font-family: var(--font-mono); font-size: 13px; width: 100%; outline: none; }
+    .placement-row input:focus { border-color: var(--accent); }
+    .remove-placement { background: none; border: 1px solid var(--border); color: var(--muted); width: 32px; height: 32px; border-radius: 4px; cursor: pointer; font-size: 12px; transition: all 0.15s; }
+    .remove-placement:hover { border-color: var(--accent2); color: var(--accent2); }
+    .kill-points-row { display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 14px; color: var(--muted); }
+    .kill-points-row input { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; color: var(--text); font-family: var(--font-mono); font-size: 18px; font-weight: 500; width: 80px; text-align: center; outline: none; }
+    .kill-points-row input:focus { border-color: var(--accent); }
+    input[type="number"] { background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 6px 8px; color: var(--text); font-family: var(--font-mono); font-size: 13px; outline: none; }
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--accent); color: #000; font-family: var(--font-mono); font-size: 12px; font-weight: 700; letter-spacing: 1px; padding: 12px 24px; border-radius: 6px; z-index: 999; transition: transform 0.3s ease; text-transform: uppercase; white-space: nowrap; }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    @media (max-width: 400px) { .teams-grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
-
-  <div class="noise"></div>
 
   <header>
     <div class="logo">TOURNAMENT<span>.CALC</span></div>
@@ -24,86 +144,337 @@
 
   <main>
 
-    <section id="tab-teams" class="tab active">
-      <div class="section-header">
-        <h2>Teams</h2>
-        <button class="btn-primary" id="openAddTeam">+ Add Team</button>
-      </div>
-      <div id="teamsList" class="teams-grid"></div>
+```
+<section id="tab-teams" class="tab active">
+  <div class="section-header">
+    <h2>Teams</h2>
+    <button class="btn-primary" id="openAddTeam">+ Add Team</button>
+  </div>
+  <div id="teamsList" class="teams-grid"></div>
 
-      <div class="modal-overlay" id="addTeamModal">
-        <div class="modal">
-          <h3>New Team</h3>
-          <input type="text" id="teamNameInput" placeholder="Team name" maxlength="30"/>
-          <div id="playerInputs">
-            <label>Players</label>
-            <div class="player-row">
-              <input type="text" class="player-input" placeholder="Player 1"/>
-              <button class="remove-player" style="visibility:hidden">X</button>
-            </div>
-          </div>
-          <button class="btn-ghost" id="addPlayerBtn">+ Add Player</button>
-          <div class="modal-actions">
-            <button class="btn-cancel" id="cancelAddTeam">Cancel</button>
-            <button class="btn-primary" id="saveTeamBtn">Save Team</button>
-          </div>
+  <div class="modal-overlay" id="addTeamModal">
+    <div class="modal">
+      <h3>New Team</h3>
+      <input type="text" id="teamNameInput" placeholder="Team name" maxlength="30"/>
+      <div id="playerInputs">
+        <label>Players</label>
+        <div class="player-row">
+          <input type="text" class="player-input" placeholder="Player 1"/>
+          <button class="remove-player" style="visibility:hidden" onclick="removePlayerRow(this)">X</button>
         </div>
       </div>
-    </section>
+      <button class="btn-ghost" id="addPlayerBtn">+ Add Player</button>
+      <div class="modal-actions">
+        <button class="btn-cancel" id="cancelAddTeam">Cancel</button>
+        <button class="btn-primary" id="saveTeamBtn">Save Team</button>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="tab-scoring" class="tab">
-      <div class="section-header">
-        <h2>Enter Results</h2>
-        <div class="match-info">
-          <span>Match</span>
-          <input type="number" id="matchNumber" value="1" min="1" style="width:50px"/>
-        </div>
-      </div>
-      <div id="scoreEntryList" class="score-list"></div>
-      <div class="score-actions">
-        <button class="btn-primary" id="submitMatchBtn">Submit Match</button>
-      </div>
-    </section>
+<section id="tab-scoring" class="tab">
+  <div class="section-header">
+    <h2>Enter Results</h2>
+    <div class="match-info">
+      <span>Match</span>
+      <input type="number" id="matchNumber" value="1" min="1" style="width:50px"/>
+    </div>
+  </div>
+  <div id="scoreEntryList" class="score-list"></div>
+  <div class="score-actions">
+    <button class="btn-primary" id="submitMatchBtn">Submit Match</button>
+  </div>
+</section>
 
-    <section id="tab-leaderboard" class="tab">
-      <div class="section-header">
-        <h2>Leaderboard</h2>
-        <button class="btn-ghost" id="resetBtn">Reset All</button>
-      </div>
-      <div id="leaderboardList" class="leaderboard"></div>
-    </section>
+<section id="tab-leaderboard" class="tab">
+  <div class="section-header">
+    <h2>Leaderboard</h2>
+    <button class="btn-ghost" id="resetBtn">Reset All</button>
+  </div>
+  <div id="leaderboardList" class="leaderboard"></div>
+</section>
 
-    <section id="tab-settings" class="tab">
-      <div class="section-header">
-        <h2>Scoring Rules</h2>
-        <button class="btn-primary" id="saveRulesBtn">Save Rules</button>
-      </div>
-      <div class="rules-card">
-        <h4>Placement Points</h4>
-        <p class="hint">Set points for each placement position</p>
-        <div id="placementRules" class="placement-grid"></div>
-        <button class="btn-ghost" id="addPlacementBtn">+ Add Position</button>
-      </div>
-      <div class="rules-card">
-        <h4>Kill Points</h4>
-        <p class="hint">Points awarded per kill</p>
-        <div class="kill-points-row">
-          <span>1 kill =</span>
-          <input type="number" id="killPointsInput" value="1" min="0" step="0.5"/>
-          <span>pts</span>
-        </div>
-      </div>
-    </section>
+<section id="tab-settings" class="tab">
+  <div class="section-header">
+    <h2>Scoring Rules</h2>
+    <button class="btn-primary" id="saveRulesBtn">Save Rules</button>
+  </div>
+  <div class="rules-card">
+    <h4>Placement Points</h4>
+    <p class="hint">Set points for each placement position</p>
+    <div id="placementRules" class="placement-grid"></div>
+    <button class="btn-ghost" id="addPlacementBtn">+ Add Position</button>
+  </div>
+  <div class="rules-card">
+    <h4>Kill Points</h4>
+    <p class="hint">Points awarded per kill</p>
+    <div class="kill-points-row">
+      <span>1 kill =</span>
+      <input type="number" id="killPointsInput" value="1" min="0" step="0.5"/>
+      <span>pts</span>
+    </div>
+  </div>
+</section>
+```
 
   </main>
 
+  <!-- Firebase -->
+
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-  <script src="firebase.js"></script>
-  <script src="teams.js"></script>
-  <script src="scoring.js"></script>
-  <script src="leaderboard.js"></script>
-  <script src="app.js"></script>
+
+  <script>
+  // ── State ──
+  let teams = [];
+  let rules = { killPoints: 1, placements: [
+    { position: 1, points: 15 }, { position: 2, points: 12 },
+    { position: 3, points: 10 }, { position: 4, points: 8 }, { position: 5, points: 6 }
+  ]};
+  let db = null;
+  let useFirebase = false;
+
+  // ── Firebase init ──
+  try {
+    firebase.initializeApp({
+      apiKey: "AIzaSyBl7sciwMVSVFVj9wfpOCZ9t8yvBjaQwsE",
+      authDomain: "tournament-f1015.firebaseapp.com",
+      projectId: "tournament-f1015",
+      storageBucket: "tournament-f1015.firebasestorage.app",
+      messagingSenderId: "649492665434",
+      appId: "1:649492665434:web:ad74c25d85be57504eb463"
+    });
+    db = firebase.firestore();
+    useFirebase = true;
+  } catch(e) { console.warn("Firebase off, using localStorage", e); }
+
+  // ── Storage helpers ──
+  async function dbGetTeams() {
+    if (useFirebase) { try { const s = await db.collection("teams").orderBy("createdAt").get(); return s.docs.map(d=>({id:d.id,...d.data()})); } catch(e){} }
+    return JSON.parse(localStorage.getItem("teams")||"[]");
+  }
+  async function dbAddTeam(t) {
+    if (useFirebase) { try { return await db.collection("teams").add({...t,createdAt:Date.now()}); } catch(e){} }
+    const all = JSON.parse(localStorage.getItem("teams")||"[]");
+    t.id = Date.now().toString(); t.createdAt = Date.now();
+    all.push(t); localStorage.setItem("teams",JSON.stringify(all));
+  }
+  async function dbDeleteTeam(id) {
+    if (useFirebase) { try { return await db.collection("teams").doc(id).delete(); } catch(e){} }
+    let all = JSON.parse(localStorage.getItem("teams")||"[]");
+    localStorage.setItem("teams", JSON.stringify(all.filter(t=>t.id!==id)));
+  }
+  async function dbSaveMatch(m) {
+    if (useFirebase) { try { return await db.collection("matches").add({...m,savedAt:Date.now()}); } catch(e){} }
+    const all = JSON.parse(localStorage.getItem("matches")||"[]");
+    m.id = Date.now().toString(); all.push(m);
+    localStorage.setItem("matches",JSON.stringify(all));
+  }
+  async function dbGetMatches() {
+    if (useFirebase) { try { const s = await db.collection("matches").orderBy("savedAt").get(); return s.docs.map(d=>({id:d.id,...d.data()})); } catch(e){} }
+    return JSON.parse(localStorage.getItem("matches")||"[]");
+  }
+  async function dbDeleteAllMatches() {
+    if (useFirebase) { try { const s=await db.collection("matches").get(); const b=db.batch(); s.docs.forEach(d=>b.delete(d.ref)); return await b.commit(); } catch(e){} }
+    localStorage.removeItem("matches");
+  }
+  async function dbGetRules() {
+    if (useFirebase) { try { const d=await db.collection("rules").doc("config").get(); if(d.exists) return d.data(); } catch(e){} }
+    const s = localStorage.getItem("rules"); if(s) return JSON.parse(s);
+    return rules;
+  }
+  async function dbSaveRules(r) {
+    if (useFirebase) { try { return await db.collection("rules").doc("config").set(r); } catch(e){} }
+    localStorage.setItem("rules",JSON.stringify(r));
+  }
+
+  // ── Toast ──
+  function showToast(msg) {
+    let t = document.querySelector(".toast");
+    if (!t) { t = document.createElement("div"); t.className="toast"; document.body.appendChild(t); }
+    t.textContent = msg; t.classList.add("show");
+    setTimeout(()=>t.classList.remove("show"), 2500);
+  }
+
+  // ── Tabs ──
+  document.querySelectorAll(".nav-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
+      document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("tab-"+tab).classList.add("active");
+      if (tab === "leaderboard") renderLeaderboard();
+    });
+  });
+
+  // ── Teams ──
+  async function loadTeams() {
+    teams = await dbGetTeams();
+    renderTeams();
+  }
+  function renderTeams() {
+    const c = document.getElementById("teamsList");
+    if (!teams.length) { c.innerHTML='<div class="empty-state">No teams yet. Tap "+ Add Team" to get started.</div>'; return; }
+    c.innerHTML = teams.map(t=>`
+      <div class="team-card">
+        <div class="team-card-name">${t.name}</div>
+        <div class="team-card-players">${t.players.map(p=>`• ${p}`).join("<br/>")}</div>
+        <button class="team-delete" onclick="deleteTeam('${t.id}')">✕</button>
+      </div>`).join("");
+  }
+  async function deleteTeam(id) {
+    if (!confirm("Delete this team?")) return;
+    await dbDeleteTeam(id); await loadTeams(); renderScoreEntry(); showToast("Team removed");
+  }
+  function openAddTeamModal() {
+    document.getElementById("addTeamModal").classList.add("open");
+    document.getElementById("teamNameInput").value = "";
+    document.getElementById("playerInputs").innerHTML = `
+      <label>Players</label>
+      <div class="player-row">
+        <input type="text" class="player-input" placeholder="Player 1"/>
+        <button class="remove-player" style="visibility:hidden" onclick="removePlayerRow(this)">X</button>
+      </div>`;
+    document.getElementById("teamNameInput").focus();
+  }
+  function closeAddTeamModal() { document.getElementById("addTeamModal").classList.remove("open"); }
+  function addPlayerRow() {
+    const c = document.getElementById("playerInputs");
+    const rows = c.querySelectorAll(".player-row");
+    rows.forEach(r=>r.querySelector(".remove-player").style.visibility="visible");
+    const count = rows.length + 1;
+    const row = document.createElement("div"); row.className="player-row";
+    row.innerHTML=`<input type="text" class="player-input" placeholder="Player ${count}"/><button class="remove-player" onclick="removePlayerRow(this)">X</button>`;
+    c.appendChild(row); row.querySelector("input").focus();
+  }
+  function removePlayerRow(btn) {
+    btn.closest(".player-row").remove();
+    const rows = document.getElementById("playerInputs").querySelectorAll(".player-row");
+    if (rows.length===1) rows[0].querySelector(".remove-player").style.visibility="hidden";
+  }
+  async function saveTeam() {
+    const name = document.getElementById("teamNameInput").value.trim();
+    if (!name) { showToast("Enter a team name"); return; }
+    const players = Array.from(document.querySelectorAll(".player-input")).map(i=>i.value.trim()).filter(Boolean);
+    if (!players.length) { showToast("Add at least one player"); return; }
+    await dbAddTeam({name, players});
+    closeAddTeamModal(); await loadTeams(); renderScoreEntry(); showToast("Team added!");
+  }
+
+  // ── Scoring ──
+  function getPlacementPoints(placement) {
+    const sorted = [...rules.placements].sort((a,b)=>a.position-b.position);
+    const exact = sorted.find(p=>p.position===placement);
+    return exact ? exact.points : 0;
+  }
+  function calculatePoints(placement, kills) { return getPlacementPoints(placement) + kills * rules.killPoints; }
+  function renderScoreEntry() {
+    const c = document.getElementById("scoreEntryList");
+    if (!teams.length) { c.innerHTML='<div class="empty-state">Add teams first.</div>'; return; }
+    c.innerHTML = teams.map(t=>`
+      <div class="score-card" data-team-id="${t.id}" data-team-name="${t.name}">
+        <div class="score-team-name">${t.name}</div>
+        <div class="score-field"><label>Place</label><input type="number" class="placement-input" min="1" max="99" placeholder="—"/></div>
+        <div class="score-field"><label>Kills</label><input type="number" class="kills-input" min="0" value="0"/></div>
+      </div>`).join("");
+  }
+  async function submitMatch() {
+    const matchNum = parseInt(document.getElementById("matchNumber").value)||1;
+    const cards = document.querySelectorAll(".score-card");
+    if (!cards.length) { showToast("No teams to score"); return; }
+    let hasPlacement = false;
+    const results = [];
+    cards.forEach(card=>{
+      const placement = parseInt(card.querySelector(".placement-input").value)||0;
+      const kills = parseInt(card.querySelector(".kills-input").value)||0;
+      if (placement>0) hasPlacement=true;
+      results.push({teamId:card.dataset.teamId, teamName:card.dataset.teamName, placement, kills, points:calculatePoints(placement,kills)});
+    });
+    if (!hasPlacement) { showToast("Enter at least one placement"); return; }
+    await dbSaveMatch({matchNumber:matchNum, results});
+    document.getElementById("matchNumber").value = matchNum+1;
+    cards.forEach(c=>{ c.querySelector(".placement-input").value=""; c.querySelector(".kills-input").value="0"; });
+    await renderLeaderboard(); showToast(`Match ${matchNum} saved!`);
+  }
+
+  // ── Leaderboard ──
+  async function renderLeaderboard() {
+    const matches = await dbGetMatches();
+    const c = document.getElementById("leaderboardList");
+    const totals = {};
+    teams.forEach(t=>{ totals[t.id]={name:t.name,totalPoints:0,totalKills:0,matchesPlayed:0}; });
+    matches.forEach(m=>{
+      (m.results||[]).forEach(r=>{
+        if (totals[r.teamId]) { totals[r.teamId].totalPoints+=r.points||0; totals[r.teamId].totalKills+=r.kills||0; totals[r.teamId].matchesPlayed+=1; }
+      });
+    });
+    const ranked = Object.values(totals).sort((a,b)=>b.totalPoints-a.totalPoints);
+    if (!ranked.length) { c.innerHTML='<div class="empty-state">No results yet.</div>'; return; }
+    c.innerHTML = ranked.map((t,i)=>{
+      const rank=i+1, rc=rank<=3?`rank-${rank}`:"", medal=rank===1?"🥇":rank===2?"🥈":rank===3?"🥉":rank;
+      return `<div class="lb-row ${rc}">
+        <div class="lb-rank">${medal}</div>
+        <div><div class="lb-name">${t.name}</div><div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);margin-top:2px">${t.matchesPlayed} match${t.matchesPlayed!==1?"es":""}</div></div>
+        <div class="lb-kills">Kills<span>${t.totalKills}</span></div>
+        <div class="lb-points">${t.totalPoints}</div>
+      </div>`;
+    }).join("");
+  }
+  async function resetAll() {
+    if (!confirm("Reset ALL match data?")) return;
+    await dbDeleteAllMatches(); await renderLeaderboard(); showToast("All scores reset");
+  }
+
+  // ── Rules ──
+  async function loadRules() { rules = await dbGetRules(); renderRulesForm(); }
+  function renderRulesForm() {
+    document.getElementById("killPointsInput").value = rules.killPoints??1;
+    document.getElementById("placementRules").innerHTML = (rules.placements||[]).map((p,i)=>`
+      <div class="placement-row">
+        <input type="number" class="pos-input" value="${p.position}" min="1" placeholder="Position"/>
+        <input type="number" class="pts-input" value="${p.points}" min="0" step="0.5" placeholder="Points"/>
+        <button class="remove-placement" onclick="removePlacementRow(this)">✕</button>
+      </div>`).join("");
+  }
+  function addPlacementRow() {
+    const c = document.getElementById("placementRules");
+    const next = c.querySelectorAll(".placement-row").length+1;
+    const row = document.createElement("div"); row.className="placement-row";
+    row.innerHTML=`<input type="number" class="pos-input" value="${next}" min="1" placeholder="Position"/><input type="number" class="pts-input" value="0" min="0" step="0.5" placeholder="Points"/><button class="remove-placement" onclick="removePlacementRow(this)">✕</button>`;
+    c.appendChild(row);
+  }
+  function removePlacementRow(btn) { btn.closest(".placement-row").remove(); }
+  async function saveRules() {
+    const killPoints = parseFloat(document.getElementById("killPointsInput").value)||1;
+    const placements = Array.from(document.querySelectorAll(".placement-row")).map(r=>({
+      position:parseInt(r.querySelector(".pos-input").value)||0,
+      points:parseFloat(r.querySelector(".pts-input").value)||0
+    })).filter(p=>p.position>0);
+    rules = {killPoints, placements};
+    await dbSaveRules(rules); showToast("Rules saved!");
+  }
+
+  // ── Wire up buttons ──
+  document.getElementById("openAddTeam").addEventListener("click", openAddTeamModal);
+  document.getElementById("cancelAddTeam").addEventListener("click", closeAddTeamModal);
+  document.getElementById("saveTeamBtn").addEventListener("click", saveTeam);
+  document.getElementById("addPlayerBtn").addEventListener("click", addPlayerRow);
+  document.getElementById("addTeamModal").addEventListener("click", function(e){ if(e.target===this) closeAddTeamModal(); });
+  document.getElementById("submitMatchBtn").addEventListener("click", submitMatch);
+  document.getElementById("resetBtn").addEventListener("click", resetAll);
+  document.getElementById("saveRulesBtn").addEventListener("click", saveRules);
+  document.getElementById("addPlacementBtn").addEventListener("click", addPlacementRow);
+
+  // ── Boot ──
+  (async () => {
+    try { await loadRules(); } catch(e) { console.warn(e); }
+    try { await loadTeams(); } catch(e) { console.warn(e); renderTeams(); }
+    renderScoreEntry();
+    try { await renderLeaderboard(); } catch(e) { console.warn(e); }
+  })();
+  </script>
 
 </body>
 </html>

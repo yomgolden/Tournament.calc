@@ -9,149 +9,175 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0a0a; --surface: #111; --surface2: #1a1a1a; --border: #2a2a2a;
-      --accent: #e8ff00; --accent2: #ff4d00; --text: #f0f0f0; --muted: #666;
-      --font-display: 'Bebas Neue', sans-serif;
-      --font-body: 'Syne', sans-serif;
-      --font-mono: 'DM Mono', monospace;
+      --bg:#0a0a0a; --surface:#111; --surface2:#1a1a1a; --border:#2a2a2a;
+      --accent:#e8ff00; --accent2:#ff4d00; --text:#f0f0f0; --muted:#666;
+      --font-display:'Bebas Neue',sans-serif;
+      --font-body:'Syne',sans-serif;
+      --font-mono:'DM Mono',monospace;
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { background:var(--bg); color:var(--text); font-family:var(--font-body); min-height:100vh; }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;}
 
 ```
 /* HEADER */
-header { position:sticky; top:0; z-index:100; background:var(--bg); border-bottom:1px solid var(--border); padding:12px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
-.logo { font-family:var(--font-display); font-size:22px; letter-spacing:2px; white-space:nowrap; }
-.logo span { color:var(--accent); }
-nav { display:flex; gap:4px; overflow-x:auto; scrollbar-width:none; }
-nav::-webkit-scrollbar { display:none; }
-.nav-btn { background:none; border:1px solid transparent; color:var(--muted); font-family:var(--font-mono); font-size:11px; padding:6px 12px; border-radius:4px; cursor:pointer; white-space:nowrap; transition:all 0.2s; text-transform:uppercase; letter-spacing:1px; }
-.nav-btn:hover { color:var(--text); border-color:var(--border); }
-.nav-btn.active { background:var(--accent); color:#000; border-color:var(--accent); font-weight:700; }
-.nav-btn:disabled { opacity:0.3; cursor:not-allowed; }
+header{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.logo{font-family:var(--font-display);font-size:22px;letter-spacing:2px;white-space:nowrap;}
+.logo span{color:var(--accent);}
+.tournament-name-display{font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px;}
+nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;}
+nav::-webkit-scrollbar{display:none;}
+.nav-btn{background:none;border:1px solid transparent;color:var(--muted);font-family:var(--font-mono);font-size:11px;padding:6px 10px;border-radius:4px;cursor:pointer;white-space:nowrap;transition:all 0.2s;text-transform:uppercase;letter-spacing:1px;}
+.nav-btn:hover{color:var(--text);border-color:var(--border);}
+.nav-btn.active{background:var(--accent);color:#000;border-color:var(--accent);font-weight:700;}
 
 /* MAIN */
-main { padding:20px; max-width:600px; margin:0 auto; }
-.tab { display:none; }
-.tab.active { display:block; }
+main{padding:20px;max-width:600px;margin:0 auto;}
+.tab{display:none;}
+.tab.active{display:block;}
 
 /* SECTION HEADER */
-.section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; flex-wrap:wrap; gap:10px; }
-.section-header h2 { font-family:var(--font-display); font-size:32px; letter-spacing:2px; }
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
+.section-header h2{font-family:var(--font-display);font-size:32px;letter-spacing:2px;}
 
 /* BUTTONS */
-.btn-primary { background:var(--accent); color:#000; border:none; padding:10px 18px; font-family:var(--font-mono); font-size:12px; font-weight:700; letter-spacing:1px; border-radius:4px; cursor:pointer; text-transform:uppercase; transition:all 0.15s; }
-.btn-primary:hover { background:#fff; }
-.btn-ghost { background:none; color:var(--accent); border:1px solid var(--accent); padding:8px 16px; font-family:var(--font-mono); font-size:11px; letter-spacing:1px; border-radius:4px; cursor:pointer; text-transform:uppercase; transition:all 0.15s; }
-.btn-ghost:hover { background:var(--accent); color:#000; }
-.btn-danger { background:none; color:var(--accent2); border:1px solid var(--accent2); padding:8px 16px; font-family:var(--font-mono); font-size:11px; letter-spacing:1px; border-radius:4px; cursor:pointer; text-transform:uppercase; transition:all 0.15s; }
-.btn-danger:hover { background:var(--accent2); color:#fff; }
-.btn-cancel { background:none; color:var(--muted); border:1px solid var(--border); padding:10px 18px; font-family:var(--font-mono); font-size:12px; border-radius:4px; cursor:pointer; transition:all 0.15s; }
+.btn-primary{background:var(--accent);color:#000;border:none;padding:10px 18px;font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:1px;border-radius:4px;cursor:pointer;text-transform:uppercase;transition:all 0.15s;}
+.btn-primary:hover{background:#fff;}
+.btn-ghost{background:none;color:var(--accent);border:1px solid var(--accent);padding:8px 16px;font-family:var(--font-mono);font-size:11px;letter-spacing:1px;border-radius:4px;cursor:pointer;text-transform:uppercase;transition:all 0.15s;}
+.btn-ghost:hover{background:var(--accent);color:#000;}
+.btn-danger{background:none;color:var(--accent2);border:1px solid var(--accent2);padding:8px 16px;font-family:var(--font-mono);font-size:11px;letter-spacing:1px;border-radius:4px;cursor:pointer;text-transform:uppercase;transition:all 0.15s;}
+.btn-danger:hover{background:var(--accent2);color:#fff;}
+.btn-cancel{background:none;color:var(--muted);border:1px solid var(--border);padding:10px 18px;font-family:var(--font-mono);font-size:12px;border-radius:4px;cursor:pointer;}
+.btn-sm{padding:6px 12px;font-size:10px;}
 
 /* CARDS */
-.card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:20px; margin-bottom:14px; }
-.card h4 { font-family:var(--font-display); font-size:20px; letter-spacing:1px; margin-bottom:10px; }
-.hint { font-family:var(--font-mono); font-size:11px; color:var(--muted); margin-bottom:12px; }
+.card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px;margin-bottom:14px;}
+.card h4{font-family:var(--font-display);font-size:20px;letter-spacing:1px;margin-bottom:10px;}
+.hint{font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-bottom:12px;}
 
 /* INPUTS */
-input[type="text"], input[type="number"] { background:var(--surface2); border:1px solid var(--border); border-radius:6px; padding:10px 14px; color:var(--text); font-family:var(--font-mono); font-size:13px; outline:none; transition:border-color 0.15s; width:100%; }
-input[type="text"]:focus, input[type="number"]:focus { border-color:var(--accent); }
-label.field-label { font-family:var(--font-mono); font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:5px; }
+input[type="text"],input[type="number"]{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 14px;color:var(--text);font-family:var(--font-mono);font-size:13px;outline:none;transition:border-color 0.15s;width:100%;}
+input[type="text"]:focus,input[type="number"]:focus{border-color:var(--accent);}
+label.field-label{font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:5px;}
 
-/* SETUP TAB */
-.setup-step { display:none; }
-.setup-step.active { display:block; }
-.step-indicator { display:flex; gap:8px; margin-bottom:24px; }
-.step-dot { width:8px; height:8px; border-radius:50%; background:var(--border); transition:background 0.2s; }
-.step-dot.active { background:var(--accent); }
-.step-dot.done { background:var(--muted); }
+/* TAGS */
+.tag{font-family:var(--font-mono);font-size:10px;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:3px 8px;color:var(--muted);}
+.tag.green{border-color:#00ff88;color:#00ff88;}
+.tag.yellow{border-color:var(--accent);color:var(--accent);}
 
-.placement-row { display:grid; grid-template-columns:80px 1fr auto; gap:8px; align-items:center; margin-bottom:8px; }
-.placement-row .pos-label { font-family:var(--font-display); font-size:18px; color:var(--accent); }
-.remove-btn { background:none; border:1px solid var(--border); color:var(--muted); width:32px; height:32px; border-radius:4px; cursor:pointer; font-size:12px; transition:all 0.15s; flex-shrink:0; }
-.remove-btn:hover { border-color:var(--accent2); color:var(--accent2); }
-
-.kill-rate-row { display:flex; align-items:center; gap:12px; font-family:var(--font-mono); font-size:14px; color:var(--muted); }
-.kill-rate-row input { width:80px; text-align:center; font-size:20px; font-weight:500; }
+/* SETUP */
+.placement-row{display:grid;grid-template-columns:80px 1fr auto;gap:8px;align-items:center;margin-bottom:8px;}
+.placement-row .pos-label{font-family:var(--font-display);font-size:18px;color:var(--accent);}
+.remove-btn{background:none;border:1px solid var(--border);color:var(--muted);width:32px;height:32px;border-radius:4px;cursor:pointer;font-size:12px;transition:all 0.15s;flex-shrink:0;}
+.remove-btn:hover{border-color:var(--accent2);color:var(--accent2);}
+.kill-rate-row{display:flex;align-items:center;gap:12px;font-family:var(--font-mono);font-size:14px;color:var(--muted);}
+.kill-rate-row input{width:80px;text-align:center;font-size:20px;font-weight:500;}
+.match-limit-row{display:flex;align-items:center;gap:12px;font-family:var(--font-mono);font-size:14px;color:var(--muted);}
+.match-limit-row input{width:80px;text-align:center;font-size:20px;font-weight:500;}
 
 /* TEAMS */
-.teams-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.team-card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px; position:relative; transition:border-color 0.2s; }
-.team-card:hover { border-color:var(--accent); }
-.team-card-name { font-family:var(--font-display); font-size:20px; letter-spacing:1px; color:var(--accent); margin-bottom:6px; }
-.team-card-players { font-family:var(--font-mono); font-size:11px; color:var(--muted); line-height:1.8; }
-.team-delete { position:absolute; top:10px; right:10px; background:none; border:none; color:var(--muted); cursor:pointer; font-size:14px; transition:color 0.15s; }
-.team-delete:hover { color:var(--accent2); }
-.player-row { display:flex; gap:8px; align-items:center; margin-top:6px; }
-.player-row input { flex:1; }
-.empty-state { grid-column:1/-1; text-align:center; padding:40px 20px; color:var(--muted); font-family:var(--font-mono); font-size:13px; border:1px dashed var(--border); border-radius:8px; }
+.teams-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.team-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;position:relative;transition:border-color 0.2s;}
+.team-card:hover{border-color:var(--accent);}
+.team-card-name{font-family:var(--font-display);font-size:20px;letter-spacing:1px;color:var(--accent);margin-bottom:6px;}
+.team-card-players{font-family:var(--font-mono);font-size:11px;color:var(--muted);line-height:1.8;}
+.team-delete{position:absolute;top:10px;right:10px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;transition:color 0.15s;}
+.team-delete:hover{color:var(--accent2);}
+.player-row{display:flex;gap:8px;align-items:center;margin-top:6px;}
+.player-row input{flex:1;}
+.empty-state{grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--muted);font-family:var(--font-mono);font-size:13px;border:1px dashed var(--border);border-radius:8px;}
 
 /* MODAL */
-.modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.88); z-index:200; align-items:center; justify-content:center; padding:20px; }
-.modal-overlay.open { display:flex; }
-.modal { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:24px; width:100%; max-width:440px; display:flex; flex-direction:column; gap:14px; max-height:90vh; overflow-y:auto; }
-.modal h3 { font-family:var(--font-display); font-size:24px; letter-spacing:1px; }
-.modal-actions { display:flex; gap:10px; justify-content:flex-end; margin-top:4px; }
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:200;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;width:100%;max-width:440px;display:flex;flex-direction:column;gap:14px;max-height:90vh;overflow-y:auto;}
+.modal h3{font-family:var(--font-display);font-size:24px;letter-spacing:1px;}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:4px;}
+
+/* CONFIRM MODAL */
+.confirm-modal{background:var(--surface);border:1px solid var(--accent);border-radius:12px;padding:24px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;}
+.confirm-modal h3{font-family:var(--font-display);font-size:24px;letter-spacing:1px;margin-bottom:16px;color:var(--accent);}
+.confirm-result-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;}
+.confirm-result-row:last-child{border-bottom:none;}
+.confirm-team-name{font-family:var(--font-display);font-size:16px;letter-spacing:1px;}
+.confirm-stats{display:flex;gap:12px;color:var(--muted);}
+.confirm-stats .tp{color:var(--accent);font-size:16px;font-family:var(--font-display);}
 
 /* SCORING */
-.match-header { display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:13px; color:var(--muted); margin-bottom:16px; }
-.match-header input { width:60px; text-align:center; }
-.score-card { background:var(--surface); border:1px solid var(--border); border-radius:8px; margin-bottom:10px; overflow:hidden; }
-.score-card-header { padding:14px 16px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--border); }
-.score-team-name { font-family:var(--font-display); font-size:20px; letter-spacing:1px; }
-.score-placement { display:flex; align-items:center; gap:8px; }
-.score-placement label { font-family:var(--font-mono); font-size:10px; color:var(--muted); text-transform:uppercase; }
-.score-placement input { width:70px; text-align:center; font-size:16px; font-weight:500; }
-.score-players { padding:12px 16px; display:flex; flex-direction:column; gap:8px; }
-.score-player-row { display:flex; align-items:center; justify-content:space-between; }
-.score-player-name { font-family:var(--font-mono); font-size:12px; color:var(--muted); }
-.score-player-kills { display:flex; align-items:center; gap:8px; }
-.score-player-kills label { font-family:var(--font-mono); font-size:10px; color:var(--muted); text-transform:uppercase; }
-.score-player-kills input { width:60px; text-align:center; font-size:15px; }
-.score-card-footer { padding:10px 16px; background:var(--surface2); display:flex; justify-content:space-between; align-items:center; font-family:var(--font-mono); font-size:11px; color:var(--muted); }
-.score-card-footer span { color:var(--accent); font-size:14px; font-weight:500; }
+.match-header{display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:13px;color:var(--muted);margin-bottom:16px;flex-wrap:wrap;}
+.match-header input{width:60px;text-align:center;}
+.match-progress{font-family:var(--font-mono);font-size:11px;color:var(--muted);padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:6px;margin-bottom:16px;}
+.match-progress span{color:var(--accent);}
+.score-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:10px;overflow:hidden;}
+.score-card-header{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.score-team-name{font-family:var(--font-display);font-size:20px;letter-spacing:1px;}
+.score-placement{display:flex;align-items:center;gap:8px;}
+.score-placement label{font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;}
+.score-placement input{width:70px;text-align:center;font-size:16px;font-weight:500;}
+.score-players{padding:12px 16px;display:flex;flex-direction:column;gap:8px;}
+.score-player-row{display:flex;align-items:center;justify-content:space-between;}
+.score-player-name{font-family:var(--font-mono);font-size:12px;color:var(--muted);}
+.score-player-kills{display:flex;align-items:center;gap:8px;}
+.score-player-kills label{font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;}
+.score-player-kills input{width:60px;text-align:center;font-size:15px;}
+.score-card-footer{padding:10px 16px;background:var(--surface2);display:flex;justify-content:space-between;align-items:center;font-family:var(--font-mono);font-size:11px;color:var(--muted);}
+.score-card-footer .tp{color:var(--accent);font-size:14px;font-weight:500;}
 
 /* LEADERBOARD */
-.lb-table { width:100%; border-collapse:collapse; }
-.lb-table thead tr { border-bottom:2px solid var(--accent); }
-.lb-table th { font-family:var(--font-mono); font-size:10px; color:var(--accent); text-transform:uppercase; letter-spacing:1px; padding:10px 8px; text-align:right; }
-.lb-table th:first-child { text-align:left; }
-.lb-table th:nth-child(2) { text-align:left; }
-.lb-table tbody tr { border-bottom:1px solid var(--border); transition:background 0.15s; }
-.lb-table tbody tr:hover { background:var(--surface); }
-.lb-table tbody tr.rank-1 { background:rgba(255,215,0,0.06); }
-.lb-table tbody tr.rank-2 { background:rgba(192,192,192,0.04); }
-.lb-table tbody tr.rank-3 { background:rgba(205,127,50,0.04); }
-.lb-table td { padding:12px 8px; font-family:var(--font-mono); font-size:13px; text-align:right; }
-.lb-table td:first-child { text-align:center; font-family:var(--font-display); font-size:20px; width:40px; }
-.lb-table td:nth-child(2) { text-align:left; font-family:var(--font-display); font-size:18px; letter-spacing:1px; }
-.lb-table td.tp { color:var(--accent); font-family:var(--font-display); font-size:22px; }
-.lb-table td.pp { color:#aaa; }
-.lb-table td.kills { color:var(--accent2); }
+.lb-table{width:100%;border-collapse:collapse;}
+.lb-table thead tr{border-bottom:2px solid var(--accent);}
+.lb-table th{font-family:var(--font-mono);font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;padding:10px 8px;text-align:right;}
+.lb-table th:first-child{text-align:left;width:40px;}
+.lb-table th:nth-child(2){text-align:left;}
+.lb-table tbody tr{border-bottom:1px solid var(--border);transition:background 0.15s;}
+.lb-table tbody tr:hover{background:var(--surface);}
+.lb-table tbody tr.rank-1{background:rgba(255,215,0,0.06);}
+.lb-table tbody tr.rank-2{background:rgba(192,192,192,0.04);}
+.lb-table tbody tr.rank-3{background:rgba(205,127,50,0.04);}
+.lb-table td{padding:12px 8px;font-family:var(--font-mono);font-size:13px;text-align:right;}
+.lb-table td:first-child{text-align:center;font-family:var(--font-display);font-size:20px;width:40px;}
+.lb-table td:nth-child(2){text-align:left;font-family:var(--font-display);font-size:18px;letter-spacing:1px;}
+.lb-table td.tp{color:var(--accent);font-family:var(--font-display);font-size:22px;}
+.lb-table td.pp{color:#aaa;}
+.lb-table td.kp{color:#888;}
+.lb-table td.kills{color:var(--accent2);}
 
 /* KILLBOARD */
-.kb-table { width:100%; border-collapse:collapse; }
-.kb-table thead tr { border-bottom:2px solid var(--accent2); }
-.kb-table th { font-family:var(--font-mono); font-size:10px; color:var(--accent2); text-transform:uppercase; letter-spacing:1px; padding:10px 8px; text-align:right; }
-.kb-table th:first-child { text-align:left; width:40px; }
-.kb-table th:nth-child(2) { text-align:left; }
-.kb-table tbody tr { border-bottom:1px solid var(--border); transition:background 0.15s; }
-.kb-table tbody tr:hover { background:var(--surface); }
-.kb-table td { padding:12px 8px; font-family:var(--font-mono); font-size:13px; text-align:right; }
-.kb-table td:first-child { text-align:center; font-family:var(--font-display); font-size:20px; width:40px; }
-.kb-table td:nth-child(2) { text-align:left; }
-.kb-table td.kill-count { color:var(--accent2); font-family:var(--font-display); font-size:22px; }
+.kb-table{width:100%;border-collapse:collapse;}
+.kb-table thead tr{border-bottom:2px solid var(--accent2);}
+.kb-table th{font-family:var(--font-mono);font-size:10px;color:var(--accent2);text-transform:uppercase;letter-spacing:1px;padding:10px 8px;text-align:right;}
+.kb-table th:first-child{text-align:left;width:40px;}
+.kb-table th:nth-child(2){text-align:left;}
+.kb-table tbody tr{border-bottom:1px solid var(--border);transition:background 0.15s;}
+.kb-table tbody tr:hover{background:var(--surface);}
+.kb-table td{padding:12px 8px;font-family:var(--font-mono);font-size:13px;text-align:right;}
+.kb-table td:first-child{text-align:center;font-family:var(--font-display);font-size:20px;width:40px;}
+.kb-table td:nth-child(2){text-align:left;}
+.kb-table td.kill-count{color:var(--accent2);font-family:var(--font-display);font-size:22px;}
+
+/* MATCH HISTORY */
+.history-match{background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:12px;overflow:hidden;}
+.history-match-header{padding:12px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background 0.15s;}
+.history-match-header:hover{background:var(--surface2);}
+.history-match-title{font-family:var(--font-display);font-size:18px;letter-spacing:1px;}
+.history-match-meta{font-family:var(--font-mono);font-size:10px;color:var(--muted);}
+.history-match-body{display:none;padding:12px 16px;border-top:1px solid var(--border);}
+.history-match-body.open{display:block;}
+.history-result-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;}
+.history-result-row:last-child{border-bottom:none;}
+.history-team-name{font-family:var(--font-display);font-size:15px;letter-spacing:1px;}
+.history-stats{display:flex;gap:10px;color:var(--muted);font-size:11px;flex-wrap:wrap;}
+.history-stats .ht{color:var(--accent);font-size:14px;font-family:var(--font-display);}
+.history-actions{display:flex;gap:8px;margin-top:12px;}
 
 /* TOAST */
-.toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(80px); background:var(--accent); color:#000; font-family:var(--font-mono); font-size:12px; font-weight:700; letter-spacing:1px; padding:12px 24px; border-radius:6px; z-index:999; transition:transform 0.3s ease; text-transform:uppercase; white-space:nowrap; }
-.toast.show { transform:translateX(-50%) translateY(0); }
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--accent);color:#000;font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:1px;padding:12px 24px;border-radius:6px;z-index:999;transition:transform 0.3s ease;text-transform:uppercase;white-space:nowrap;}
+.toast.show{transform:translateX(-50%) translateY(0);}
 
-/* MISC */
-.divider { border:none; border-top:1px solid var(--border); margin:16px 0; }
-.row { display:flex; gap:10px; align-items:center; }
-.tag { font-family:var(--font-mono); font-size:10px; background:var(--surface2); border:1px solid var(--border); border-radius:4px; padding:3px 8px; color:var(--muted); }
-.tag.green { border-color:#00ff88; color:#00ff88; }
-@media(max-width:400px) { .teams-grid { grid-template-columns:1fr; } }
+/* SHARE */
+.share-btn{display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 14px;color:var(--muted);font-family:var(--font-mono);font-size:11px;cursor:pointer;transition:all 0.15s;text-transform:uppercase;letter-spacing:1px;}
+.share-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+@media(max-width:400px){.teams-grid{grid-template-columns:1fr;}}
 ```
 
   </style>
@@ -159,40 +185,59 @@ label.field-label { font-family:var(--font-mono); font-size:10px; color:var(--mu
 <body>
 
 <header>
-  <div class="logo">TOURNAMENT<span>.CALC</span></div>
+  <div>
+    <div class="logo">TOURNAMENT<span>.CALC</span></div>
+    <div class="tournament-name-display" id="tournamentNameDisplay"></div>
+  </div>
   <nav>
     <button class="nav-btn active" data-tab="setup">Setup</button>
-    <button class="nav-btn" data-tab="teams" id="nav-teams">Teams</button>
-    <button class="nav-btn" data-tab="scoring" id="nav-scoring">Scoring</button>
-    <button class="nav-btn" data-tab="leaderboard" id="nav-leaderboard">Board</button>
-    <button class="nav-btn" data-tab="killboard" id="nav-killboard">Kills</button>
+    <button class="nav-btn" data-tab="teams">Teams</button>
+    <button class="nav-btn" data-tab="scoring">Scoring</button>
+    <button class="nav-btn" data-tab="leaderboard">Board</button>
+    <button class="nav-btn" data-tab="killboard">Kills</button>
+    <button class="nav-btn" data-tab="history">History</button>
   </nav>
 </header>
 
 <main>
 
-  <!-- ── SETUP TAB ── -->
+  <!-- SETUP -->
 
   <section id="tab-setup" class="tab active">
     <div class="section-header">
       <h2>Tournament Setup</h2>
-      <span class="tag green" id="setupStatus">Not saved</span>
+      <span class="tag" id="setupStatus">Not saved</span>
     </div>
 
 ```
 <div class="card">
+  <h4>Tournament Name</h4>
+  <p class="hint">Give this tournament a name</p>
+  <input type="text" id="tournamentNameInput" placeholder="e.g. Alpha League Season 1" maxlength="50"/>
+</div>
+
+<div class="card">
+  <h4>Number of Matches</h4>
+  <p class="hint">How many matches in this tournament?</p>
+  <div class="match-limit-row">
+    <input type="number" id="matchLimitInput" value="6" min="1" max="50"/>
+    <span>matches</span>
+  </div>
+</div>
+
+<div class="card">
   <h4>Placement Points</h4>
-  <p class="hint">Define how many points each finishing position gets</p>
+  <p class="hint">Points awarded per finishing position</p>
   <div id="placementRows"></div>
   <button class="btn-ghost" id="addPlacementBtn" style="margin-top:8px">+ Add Position</button>
 </div>
 
 <div class="card">
   <h4>Kill Points</h4>
-  <p class="hint">Points awarded per kill (same for all players)</p>
+  <p class="hint">Points per kill (same for all players)</p>
   <div class="kill-rate-row">
     <span>1 kill =</span>
-    <input type="number" id="killRateInput" value="1" min="0" step="0.5" style="width:80px"/>
+    <input type="number" id="killRateInput" value="1" min="0" step="0.5"/>
     <span>pt(s)</span>
   </div>
 </div>
@@ -202,7 +247,7 @@ label.field-label { font-family:var(--font-mono); font-size:10px; color:var(--mu
 
   </section>
 
-  <!-- ── TEAMS TAB ── -->
+  <!-- TEAMS -->
 
   <section id="tab-teams" class="tab">
     <div class="section-header">
@@ -223,7 +268,7 @@ label.field-label { font-family:var(--font-mono); font-size:10px; color:var(--mu
       <label class="field-label">Players</label>
       <div class="player-row">
         <input type="text" class="player-input" placeholder="Player 1"/>
-        <button class="remove-btn" style="visibility:hidden" onclick="removePlayerRow(this)">✕</button>
+        <button class="remove-btn" style="visibility:hidden" onclick="removePlayerRow(this)">X</button>
       </div>
     </div>
     <button class="btn-ghost" id="addPlayerBtn">+ Add Player</button>
@@ -237,7 +282,7 @@ label.field-label { font-family:var(--font-mono); font-size:10px; color:var(--mu
 
   </section>
 
-  <!-- ── SCORING TAB ── -->
+  <!-- SCORING -->
 
   <section id="tab-scoring" class="tab">
     <div class="section-header">
@@ -247,32 +292,60 @@ label.field-label { font-family:var(--font-mono); font-size:10px; color:var(--mu
       <span>Match</span>
       <input type="number" id="matchNumber" value="1" min="1"/>
     </div>
+    <div class="match-progress" id="matchProgress"></div>
     <div id="scoreEntryList"></div>
     <div style="margin-top:20px;display:flex;justify-content:center;">
       <button class="btn-primary" id="submitMatchBtn" style="padding:14px 40px;font-size:13px;">Submit Match</button>
     </div>
   </section>
 
-  <!-- ── LEADERBOARD TAB ── -->
+  <!-- LEADERBOARD -->
 
   <section id="tab-leaderboard" class="tab">
     <div class="section-header">
       <h2>Leaderboard</h2>
-      <button class="btn-danger" id="resetBtn">Reset Scores</button>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="share-btn" id="shareLeaderboardBtn">Share</button>
+        <button class="btn-danger btn-sm" id="resetBtn">Reset</button>
+      </div>
     </div>
     <div id="leaderboardContainer"></div>
   </section>
 
-  <!-- ── KILLBOARD TAB ── -->
+  <!-- KILLBOARD -->
 
   <section id="tab-killboard" class="tab">
     <div class="section-header">
       <h2>Kill Board</h2>
+      <button class="share-btn" id="shareKillboardBtn">Share</button>
     </div>
     <div id="killboardContainer"></div>
   </section>
 
+  <!-- HISTORY -->
+
+  <section id="tab-history" class="tab">
+    <div class="section-header">
+      <h2>Match History</h2>
+      <span class="tag" id="matchCount">0 matches</span>
+    </div>
+    <div id="historyContainer"></div>
+  </section>
+
 </main>
+
+<!-- Confirm Modal -->
+
+<div class="modal-overlay" id="confirmModal">
+  <div class="confirm-modal">
+    <h3>Confirm Match Results</h3>
+    <div id="confirmResultsList"></div>
+    <div class="modal-actions" style="margin-top:16px;">
+      <button class="btn-cancel" id="cancelConfirm">Edit</button>
+      <button class="btn-primary" id="confirmSaveBtn">Save Match</button>
+    </div>
+  </div>
+</div>
 
 <!-- Firebase -->
 
@@ -281,258 +354,227 @@ label.field-label { font-family:var(--font-mono); font-size:10px; color:var(--mu
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
 <script>
-// ═══════════════════════════════════════
+// ═══════════════════════════════
 // STATE
-// ═══════════════════════════════════════
+// ═══════════════════════════════
 let teams = [];
-let matches = [];
 let rules = {
+  tournamentName: "",
+  matchLimit: 6,
   killRate: 1,
   placements: [
-    { position: 1, points: 20 },
-    { position: 2, points: 15 },
-    { position: 3, points: 12 },
-    { position: 4, points: 10 },
-    { position: 5, points: 8 },
+    {position:1,points:20},{position:2,points:15},{position:3,points:12},
+    {position:4,points:10},{position:5,points:8}
   ]
 };
+let pendingMatch = null;
 let db = null, useFirebase = false;
 
-// ═══════════════════════════════════════
-// FIREBASE
-// ═══════════════════════════════════════
+// ═══════════════════════════════
+// FIREBASE + STORAGE
+// ═══════════════════════════════
 try {
   firebase.initializeApp({
-    apiKey: "AIzaSyBl7sciwMVSVFVj9wfpOCZ9t8yvBjaQwsE",
-    authDomain: "tournament-f1015.firebaseapp.com",
-    projectId: "tournament-f1015",
-    storageBucket: "tournament-f1015.firebasestorage.app",
-    messagingSenderId: "649492665434",
-    appId: "1:649492665434:web:ad74c25d85be57504eb463"
+    apiKey:"AIzaSyBl7sciwMVSVFVj9wfpOCZ9t8yvBjaQwsE",
+    authDomain:"tournament-f1015.firebaseapp.com",
+    projectId:"tournament-f1015",
+    storageBucket:"tournament-f1015.firebasestorage.app",
+    messagingSenderId:"649492665434",
+    appId:"1:649492665434:web:ad74c25d85be57504eb463"
   });
   db = firebase.firestore();
   useFirebase = true;
-} catch(e) { console.warn("Firebase unavailable, using localStorage"); }
+} catch(e){ console.warn("Using localStorage"); }
 
-async function dbGet(col, orderField) {
-  if (useFirebase) {
-    try {
-      const q = orderField ? db.collection(col).orderBy(orderField) : db.collection(col);
-      const s = await q.get();
-      return s.docs.map(d => ({ id: d.id, ...d.data() }));
-    } catch(e) { console.warn(e); }
-  }
-  return JSON.parse(localStorage.getItem(col) || "[]");
+async function dbGetAll(col){
+  if(useFirebase){try{const s=await db.collection(col).orderBy("_ts").get();return s.docs.map(d=>({id:d.id,...d.data()}));}catch(e){console.warn(e);}}
+  return JSON.parse(localStorage.getItem(col)||"[]");
 }
-async function dbAdd(col, data) {
-  if (useFirebase) {
-    try { return await db.collection(col).add({ ...data, _ts: Date.now() }); } catch(e) { console.warn(e); }
-  }
-  const all = JSON.parse(localStorage.getItem(col) || "[]");
-  data.id = Date.now().toString(); data._ts = Date.now();
-  all.push(data); localStorage.setItem(col, JSON.stringify(all));
+async function dbAdd(col,data){
+  data._ts=Date.now();
+  if(useFirebase){try{const r=await db.collection(col).add(data);return r.id;}catch(e){console.warn(e);}}
+  const all=JSON.parse(localStorage.getItem(col)||"[]");
+  data.id=Date.now().toString();all.push(data);localStorage.setItem(col,JSON.stringify(all));return data.id;
 }
-async function dbDelete(col, id) {
-  if (useFirebase) { try { return await db.collection(col).doc(id).delete(); } catch(e) { console.warn(e); } }
-  const all = JSON.parse(localStorage.getItem(col) || "[]");
-  localStorage.setItem(col, JSON.stringify(all.filter(x => x.id !== id)));
+async function dbDelete(col,id){
+  if(useFirebase){try{return await db.collection(col).doc(id).delete();}catch(e){console.warn(e);}}
+  localStorage.setItem(col,JSON.stringify(JSON.parse(localStorage.getItem(col)||"[]").filter(x=>x.id!==id)));
 }
-async function dbDeleteAll(col) {
-  if (useFirebase) {
-    try { const s = await db.collection(col).get(); const b = db.batch(); s.docs.forEach(d => b.delete(d.ref)); return await b.commit(); } catch(e) { console.warn(e); }
-  }
+async function dbDeleteAll(col){
+  if(useFirebase){try{const s=await db.collection(col).get();const b=db.batch();s.docs.forEach(d=>b.delete(d.ref));return await b.commit();}catch(e){console.warn(e);}}
   localStorage.removeItem(col);
 }
-async function dbGetDoc(col, docId) {
-  if (useFirebase) { try { const d = await db.collection(col).doc(docId).get(); if (d.exists) return d.data(); } catch(e) { console.warn(e); } }
-  const s = localStorage.getItem(col + "_" + docId); return s ? JSON.parse(s) : null;
+async function dbGetDoc(col,docId){
+  if(useFirebase){try{const d=await db.collection(col).doc(docId).get();if(d.exists)return d.data();}catch(e){console.warn(e);}}
+  const s=localStorage.getItem(col+"_"+docId);return s?JSON.parse(s):null;
 }
-async function dbSetDoc(col, docId, data) {
-  if (useFirebase) { try { return await db.collection(col).doc(docId).set(data); } catch(e) { console.warn(e); } }
-  localStorage.setItem(col + "_" + docId, JSON.stringify(data));
+async function dbSetDoc(col,docId,data){
+  if(useFirebase){try{return await db.collection(col).doc(docId).set(data);}catch(e){console.warn(e);}}
+  localStorage.setItem(col+"_"+docId,JSON.stringify(data));
 }
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════
 // TOAST
-// ═══════════════════════════════════════
-function showToast(msg) {
-  let t = document.querySelector(".toast");
-  if (!t) { t = document.createElement("div"); t.className = "toast"; document.body.appendChild(t); }
-  t.textContent = msg; t.classList.add("show");
-  setTimeout(() => t.classList.remove("show"), 2500);
+// ═══════════════════════════════
+function showToast(msg){
+  let t=document.querySelector(".toast");
+  if(!t){t=document.createElement("div");t.className="toast";document.body.appendChild(t);}
+  t.textContent=msg;t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2500);
 }
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════
 // TABS
-// ═══════════════════════════════════════
-document.querySelectorAll(".nav-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const tab = btn.dataset.tab;
-    document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
-    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+// ═══════════════════════════════
+document.querySelectorAll(".nav-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const tab=btn.dataset.tab;
+    document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
+    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
     btn.classList.add("active");
-    document.getElementById("tab-" + tab).classList.add("active");
-    if (tab === "leaderboard") renderLeaderboard();
-    if (tab === "killboard") renderKillboard();
-    if (tab === "scoring") renderScoreEntry();
+    document.getElementById("tab-"+tab).classList.add("active");
+    if(tab==="leaderboard") renderLeaderboard();
+    if(tab==="killboard") renderKillboard();
+    if(tab==="history") renderHistory();
+    if(tab==="scoring") renderScoreEntry();
   });
 });
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════
+// UTILS
+// ═══════════════════════════════
+function ordinal(n){const s=["th","st","nd","rd"],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0]);}
+function getPlacementPts(pos){if(!pos)return 0;const p=rules.placements.find(x=>x.position===pos);return p?p.points:0;}
+
+// ═══════════════════════════════
 // SETUP
-// ═══════════════════════════════════════
-function renderSetupForm() {
-  document.getElementById("killRateInput").value = rules.killRate ?? 1;
-  const c = document.getElementById("placementRows");
-  c.innerHTML = rules.placements.map((p, i) => `
+// ═══════════════════════════════
+function renderSetupForm(){
+  document.getElementById("tournamentNameInput").value=rules.tournamentName||"";
+  document.getElementById("killRateInput").value=rules.killRate??1;
+  document.getElementById("matchLimitInput").value=rules.matchLimit??6;
+  document.getElementById("placementRows").innerHTML=rules.placements.map((p,i)=>`
     <div class="placement-row">
       <div class="pos-label">${ordinal(p.position)}</div>
       <input type="number" class="pts-input" value="${p.points}" min="0" step="0.5" placeholder="Points"/>
-      <button class="remove-btn" onclick="removePlacementRow(this)">✕</button>
+      <button class="remove-btn" onclick="removePlacementRow(this)">X</button>
     </div>`).join("");
-
-  const saved = localStorage.getItem("rules_saved");
-  document.getElementById("setupStatus").textContent = saved ? "Saved" : "Not saved";
-  document.getElementById("setupStatus").className = "tag " + (saved ? "green" : "");
+  const saved=localStorage.getItem("rules_saved");
+  const el=document.getElementById("setupStatus");
+  el.textContent=saved?"Saved":"Not saved";
+  el.className="tag"+(saved?" green":"");
+  updateTournamentNameDisplay();
 }
 
-function ordinal(n) {
-  const s = ["th","st","nd","rd"], v = n % 100;
-  return n + (s[(v-20)%10] || s[v] || s[0]);
+function updateTournamentNameDisplay(){
+  const name=document.getElementById("tournamentNameInput")?document.getElementById("tournamentNameInput").value:rules.tournamentName;
+  document.getElementById("tournamentNameDisplay").textContent=name||"";
 }
 
-function addPlacementRow() {
-  const rows = document.querySelectorAll(".placement-row");
-  const nextPos = rows.length + 1;
-  const c = document.getElementById("placementRows");
-  const row = document.createElement("div"); row.className = "placement-row";
-  row.innerHTML = `
-    <div class="pos-label">${ordinal(nextPos)}</div>
-    <input type="number" class="pts-input" value="0" min="0" step="0.5" placeholder="Points"/>
-    <button class="remove-btn" onclick="removePlacementRow(this)">✕</button>`;
+function addPlacementRow(){
+  const rows=document.querySelectorAll(".placement-row");
+  const nextPos=rows.length+1;
+  const c=document.getElementById("placementRows");
+  const row=document.createElement("div");row.className="placement-row";
+  row.innerHTML=`<div class="pos-label">${ordinal(nextPos)}</div><input type="number" class="pts-input" value="0" min="0" step="0.5" placeholder="Points"/><button class="remove-btn" onclick="removePlacementRow(this)">X</button>`;
   c.appendChild(row);
 }
 
-function removePlacementRow(btn) {
+function removePlacementRow(btn){
   btn.closest(".placement-row").remove();
-  // Re-label positions
-  document.querySelectorAll(".placement-row").forEach((row, i) => {
-    row.querySelector(".pos-label").textContent = ordinal(i + 1);
-  });
+  document.querySelectorAll(".placement-row").forEach((row,i)=>{row.querySelector(".pos-label").textContent=ordinal(i+1);});
 }
 
-async function saveSetup() {
-  const killRate = parseFloat(document.getElementById("killRateInput").value) || 1;
-  const rows = document.querySelectorAll(".placement-row");
-  const placements = Array.from(rows).map((row, i) => ({
-    position: i + 1,
-    points: parseFloat(row.querySelector(".pts-input").value) || 0
-  }));
-  if (!placements.length) { showToast("Add at least one placement"); return; }
-  rules = { killRate, placements };
-  await dbSetDoc("config", "rules", rules);
-  localStorage.setItem("rules_saved", "1");
-  document.getElementById("setupStatus").textContent = "Saved";
-  document.getElementById("setupStatus").className = "tag green";
+async function saveSetup(){
+  const name=document.getElementById("tournamentNameInput").value.trim();
+  const killRate=parseFloat(document.getElementById("killRateInput").value)||1;
+  const matchLimit=parseInt(document.getElementById("matchLimitInput").value)||6;
+  const rows=document.querySelectorAll(".placement-row");
+  const placements=Array.from(rows).map((row,i)=>({position:i+1,points:parseFloat(row.querySelector(".pts-input").value)||0}));
+  if(!placements.length){showToast("Add at least one placement");return;}
+  rules={tournamentName:name,killRate,matchLimit,placements};
+  await dbSetDoc("config","rules",rules);
+  localStorage.setItem("rules_saved","1");
+  document.getElementById("setupStatus").textContent="Saved";
+  document.getElementById("setupStatus").className="tag green";
+  updateTournamentNameDisplay();
   showToast("Rules saved!");
 }
 
-async function loadRules() {
-  const saved = await dbGetDoc("config", "rules");
-  if (saved) rules = saved;
+async function loadRules(){
+  const saved=await dbGetDoc("config","rules");
+  if(saved) rules=saved;
   renderSetupForm();
 }
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════
 // TEAMS
-// ═══════════════════════════════════════
-async function loadTeams() {
-  teams = await dbGet("teams", "_ts");
-  renderTeams();
-}
+// ═══════════════════════════════
+async function loadTeams(){teams=await dbGetAll("teams");renderTeams();}
 
-function renderTeams() {
-  const c = document.getElementById("teamsList");
-  if (!teams.length) {
-    c.innerHTML = '<div class="empty-state">No teams yet.<br/>Tap "+ Add Team" to get started.</div>';
-    return;
-  }
-  c.innerHTML = teams.map(t => `
+function renderTeams(){
+  const c=document.getElementById("teamsList");
+  if(!teams.length){c.innerHTML='<div class="empty-state">No teams yet.<br/>Tap "+ Add Team" to get started.</div>';return;}
+  c.innerHTML=teams.map(t=>`
     <div class="team-card">
       <div class="team-card-name">${t.name}</div>
-      <div class="team-card-players">${t.players.map(p => "• " + p).join("<br/>")}</div>
-      <button class="team-delete" onclick="deleteTeam('${t.id}')">✕</button>
+      <div class="team-card-players">${t.players.map(p=>"• "+p).join("<br/>")}</div>
+      <button class="team-delete" onclick="deleteTeam('${t.id}')">X</button>
     </div>`).join("");
 }
 
-async function deleteTeam(id) {
-  if (!confirm("Delete this team?")) return;
-  await dbDelete("teams", id);
-  await loadTeams();
-  showToast("Team removed");
+async function deleteTeam(id){
+  if(!confirm("Delete this team?")) return;
+  await dbDelete("teams",id);await loadTeams();showToast("Team removed");
 }
 
-function openAddTeamModal() {
+function openAddTeamModal(){
   document.getElementById("addTeamModal").classList.add("open");
-  document.getElementById("teamNameInput").value = "";
-  document.getElementById("playerInputs").innerHTML = `
+  document.getElementById("teamNameInput").value="";
+  document.getElementById("playerInputs").innerHTML=`
     <label class="field-label">Players</label>
     <div class="player-row">
       <input type="text" class="player-input" placeholder="Player 1"/>
-      <button class="remove-btn" style="visibility:hidden" onclick="removePlayerRow(this)">✕</button>
+      <button class="remove-btn" style="visibility:hidden" onclick="removePlayerRow(this)">X</button>
     </div>`;
-  setTimeout(() => document.getElementById("teamNameInput").focus(), 100);
+  setTimeout(()=>document.getElementById("teamNameInput").focus(),100);
+}
+function closeAddTeamModal(){document.getElementById("addTeamModal").classList.remove("open");}
+
+function addPlayerRow(){
+  const c=document.getElementById("playerInputs");
+  const rows=c.querySelectorAll(".player-row");
+  rows.forEach(r=>r.querySelector(".remove-btn").style.visibility="visible");
+  const count=rows.length+1;
+  const row=document.createElement("div");row.className="player-row";
+  row.innerHTML=`<input type="text" class="player-input" placeholder="Player ${count}"/><button class="remove-btn" onclick="removePlayerRow(this)">X</button>`;
+  c.appendChild(row);row.querySelector("input").focus();
 }
 
-function closeAddTeamModal() {
-  document.getElementById("addTeamModal").classList.remove("open");
-}
-
-function addPlayerRow() {
-  const c = document.getElementById("playerInputs");
-  const rows = c.querySelectorAll(".player-row");
-  rows.forEach(r => r.querySelector(".remove-btn").style.visibility = "visible");
-  const count = rows.length + 1;
-  const row = document.createElement("div"); row.className = "player-row";
-  row.innerHTML = `<input type="text" class="player-input" placeholder="Player ${count}"/><button class="remove-btn" onclick="removePlayerRow(this)">✕</button>`;
-  c.appendChild(row);
-  row.querySelector("input").focus();
-}
-
-function removePlayerRow(btn) {
+function removePlayerRow(btn){
   btn.closest(".player-row").remove();
-  const rows = document.getElementById("playerInputs").querySelectorAll(".player-row");
-  if (rows.length === 1) rows[0].querySelector(".remove-btn").style.visibility = "hidden";
+  const rows=document.getElementById("playerInputs").querySelectorAll(".player-row");
+  if(rows.length===1) rows[0].querySelector(".remove-btn").style.visibility="hidden";
 }
 
-async function saveTeam() {
-  const name = document.getElementById("teamNameInput").value.trim();
-  if (!name) { showToast("Enter a team name"); return; }
-  const players = Array.from(document.querySelectorAll(".player-input"))
-    .map(i => i.value.trim()).filter(Boolean);
-  if (!players.length) { showToast("Add at least one player"); return; }
-  await dbAdd("teams", { name, players });
-  closeAddTeamModal();
-  await loadTeams();
-  showToast("Team added!");
+async function saveTeam(){
+  const name=document.getElementById("teamNameInput").value.trim();
+  if(!name){showToast("Enter a team name");return;}
+  const players=Array.from(document.querySelectorAll(".player-input")).map(i=>i.value.trim()).filter(Boolean);
+  if(!players.length){showToast("Add at least one player");return;}
+  await dbAdd("teams",{name,players});
+  closeAddTeamModal();await loadTeams();showToast("Team added!");
 }
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════
 // SCORING
-// ═══════════════════════════════════════
-function getPlacementPts(position) {
-  if (!position) return 0;
-  const p = rules.placements.find(x => x.position === position);
-  return p ? p.points : 0;
-}
-
-function renderScoreEntry() {
-  const c = document.getElementById("scoreEntryList");
-  if (!teams.length) {
-    c.innerHTML = '<div class="empty-state">Add teams first before entering scores.</div>';
-    return;
-  }
-  c.innerHTML = teams.map(t => `
+// ═══════════════════════════════
+function renderScoreEntry(){
+  const c=document.getElementById("scoreEntryList");
+  // Match progress
+  updateMatchProgress();
+  if(!teams.length){c.innerHTML='<div class="empty-state">Add teams first before entering scores.</div>';return;}
+  c.innerHTML=teams.map(t=>`
     <div class="score-card" data-team-id="${t.id}" data-team-name="${t.name}">
       <div class="score-card-header">
         <div class="score-team-name">${t.name}</div>
@@ -542,7 +584,7 @@ function renderScoreEntry() {
         </div>
       </div>
       <div class="score-players">
-        ${t.players.map((p, i) => `
+        ${t.players.map(p=>`
           <div class="score-player-row">
             <div class="score-player-name">${p}</div>
             <div class="score-player-kills">
@@ -552,120 +594,152 @@ function renderScoreEntry() {
           </div>`).join("")}
       </div>
       <div class="score-card-footer">
-        <div>PP: <span class="pp-display">0</span> &nbsp; Kills: <span class="kills-display">0</span></div>
-        <div>TP: <span class="tp-display">0</span></div>
+        <div>PP: <span class="pp-display">0</span> &nbsp;|&nbsp; Kills: <span class="kills-display">0</span> &nbsp;|&nbsp; KP: <span class="kp-display">0</span></div>
+        <div>TP: <span class="tp">0</span></div>
       </div>
     </div>`).join("");
 }
 
-function updateCardFooter(input) {
-  const card = input.closest(".score-card");
-  const placement = parseInt(card.querySelector(".placement-input").value) || 0;
-  const killInputs = card.querySelectorAll(".kills-input");
-  const totalKills = Array.from(killInputs).reduce((sum, i) => sum + (parseInt(i.value) || 0), 0);
-  const pp = getPlacementPts(placement);
-  const killPts = totalKills * (rules.killRate || 1);
-  const tp = pp + killPts;
-  card.querySelector(".pp-display").textContent = pp;
-  card.querySelector(".kills-display").textContent = totalKills;
-  card.querySelector(".tp-display").textContent = tp;
+async function updateMatchProgress(){
+  const allMatches=await dbGetAll("matches");
+  const current=parseInt(document.getElementById("matchNumber").value)||1;
+  const total=rules.matchLimit||6;
+  const done=allMatches.length;
+  const el=document.getElementById("matchProgress");
+  if(el) el.innerHTML=`Match <span>${current}</span> of <span>${total}</span> &nbsp;|&nbsp; <span>${done}</span> submitted so far`;
 }
 
-async function submitMatch() {
-  const matchNum = parseInt(document.getElementById("matchNumber").value) || 1;
-  const cards = document.querySelectorAll(".score-card");
-  if (!cards.length) { showToast("No teams to score"); return; }
-
-  let hasPlacement = false;
-  const results = [];
-
-  cards.forEach(card => {
-    const teamId = card.dataset.teamId;
-    const teamName = card.dataset.teamName;
-    const placement = parseInt(card.querySelector(".placement-input").value) || 0;
-    if (placement > 0) hasPlacement = true;
-
-    const playerKills = {};
-    card.querySelectorAll(".kills-input").forEach(i => {
-      playerKills[i.dataset.player] = parseInt(i.value) || 0;
-    });
-
-    const totalKills = Object.values(playerKills).reduce((a, b) => a + b, 0);
-    const pp = getPlacementPts(placement);
-    const killPts = totalKills * (rules.killRate || 1);
-    const tp = pp + killPts;
-
-    results.push({ teamId, teamName, placement, playerKills, totalKills, pp, killPts, tp });
-  });
-
-  if (!hasPlacement) { showToast("Enter at least one placement"); return; }
-
-  await dbAdd("matches", { matchNumber: matchNum, results });
-  matches.push({ matchNumber: matchNum, results });
-
-  document.getElementById("matchNumber").value = matchNum + 1;
-  cards.forEach(card => {
-    card.querySelector(".placement-input").value = "";
-    card.querySelectorAll(".kills-input").forEach(i => i.value = "0");
-    card.querySelector(".pp-display").textContent = "0";
-    card.querySelector(".kills-display").textContent = "0";
-    card.querySelector(".tp-display").textContent = "0";
-  });
-
-  showToast(`Match ${matchNum} saved!`);
+function updateCardFooter(input){
+  const card=input.closest(".score-card");
+  const placement=parseInt(card.querySelector(".placement-input").value)||0;
+  const killInputs=card.querySelectorAll(".kills-input");
+  const totalKills=Array.from(killInputs).reduce((s,i)=>s+(parseInt(i.value)||0),0);
+  const pp=getPlacementPts(placement);
+  const kp=totalKills*(rules.killRate||1);
+  const tp=pp+kp;
+  card.querySelector(".pp-display").textContent=pp;
+  card.querySelector(".kills-display").textContent=totalKills;
+  card.querySelector(".kp-display").textContent=kp;
+  card.querySelector(".tp").textContent=tp;
 }
 
-// ═══════════════════════════════════════
+function submitMatch(){
+  const matchNum=parseInt(document.getElementById("matchNumber").value)||1;
+  const cards=document.querySelectorAll(".score-card");
+  if(!cards.length){showToast("No teams to score");return;}
+
+  let hasPlacement=false;
+  const results=[];
+
+  cards.forEach(card=>{
+    const teamId=card.dataset.teamId;
+    const teamName=card.dataset.teamName;
+    const placement=parseInt(card.querySelector(".placement-input").value)||0;
+    if(placement>0) hasPlacement=true;
+    const playerKills={};
+    card.querySelectorAll(".kills-input").forEach(i=>{playerKills[i.dataset.player]=parseInt(i.value)||0;});
+    const totalKills=Object.values(playerKills).reduce((a,b)=>a+b,0);
+    const pp=getPlacementPts(placement);
+    const kp=totalKills*(rules.killRate||1);
+    const tp=pp+kp;
+    results.push({teamId,teamName,placement,playerKills,totalKills,pp,kp,tp});
+  });
+
+  if(!hasPlacement){showToast("Enter at least one placement");return;}
+
+  // Show confirmation modal
+  pendingMatch={matchNumber:matchNum,results};
+  showConfirmModal(pendingMatch);
+}
+
+function showConfirmModal(match){
+  const sorted=[...match.results].sort((a,b)=>(a.placement||99)-(b.placement||99));
+  document.getElementById("confirmResultsList").innerHTML=sorted.map(r=>`
+    <div class="confirm-result-row">
+      <div>
+        <div class="confirm-team-name">${r.teamName}</div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);margin-top:2px">${r.placement?ordinal(r.placement)+" place":"No placement"}</div>
+      </div>
+      <div class="confirm-stats">
+        <span>PP: ${r.pp}</span>
+        <span>Kills: ${r.totalKills}</span>
+        <span>KP: ${r.kp}</span>
+        <span class="tp">${r.tp}</span>
+      </div>
+    </div>`).join("");
+  document.getElementById("confirmModal").classList.add("open");
+}
+
+async function confirmSave(){
+  if(!pendingMatch) return;
+  await dbAdd("matches",pendingMatch);
+  document.getElementById("confirmModal").classList.remove("open");
+
+  const matchNum=pendingMatch.matchNumber;
+  document.getElementById("matchNumber").value=matchNum+1;
+
+  // Reset score cards
+  document.querySelectorAll(".score-card").forEach(card=>{
+    card.querySelector(".placement-input").value="";
+    card.querySelectorAll(".kills-input").forEach(i=>i.value="0");
+    card.querySelector(".pp-display").textContent="0";
+    card.querySelector(".kills-display").textContent="0";
+    card.querySelector(".kp-display").textContent="0";
+    card.querySelector(".tp").textContent="0";
+  });
+
+  pendingMatch=null;
+  await updateMatchProgress();
+
+  // Auto-update leaderboard in background
+  renderLeaderboard();
+
+  showToast("Match "+matchNum+" saved!");
+}
+
+// ═══════════════════════════════
 // LEADERBOARD
-// ═══════════════════════════════════════
-async function renderLeaderboard() {
-  const allMatches = await dbGet("matches", "_ts");
-  const c = document.getElementById("leaderboardContainer");
+// ═══════════════════════════════
+async function renderLeaderboard(){
+  const allMatches=await dbGetAll("matches");
+  const c=document.getElementById("leaderboardContainer");
+  if(!teams.length){c.innerHTML='<div class="empty-state">No teams yet.</div>';return;}
 
-  if (!teams.length) { c.innerHTML = '<div class="empty-state">No teams yet.</div>'; return; }
-
-  // Aggregate per team
-  const totals = {};
-  teams.forEach(t => { totals[t.id] = { name: t.name, pp: 0, kills: 0, tp: 0, matches: 0 }; });
-
-  allMatches.forEach(m => {
-    (m.results || []).forEach(r => {
-      if (totals[r.teamId]) {
-        totals[r.teamId].pp    += r.pp || 0;
-        totals[r.teamId].kills += r.totalKills || 0;
-        totals[r.teamId].tp    += r.tp || 0;
-        totals[r.teamId].matches += 1;
+  const totals={};
+  teams.forEach(t=>{totals[t.id]={name:t.name,pp:0,kills:0,kp:0,tp:0,matches:0};});
+  allMatches.forEach(m=>{
+    (m.results||[]).forEach(r=>{
+      if(totals[r.teamId]){
+        totals[r.teamId].pp+=r.pp||0;
+        totals[r.teamId].kills+=r.totalKills||0;
+        totals[r.teamId].kp+=r.kp||0;
+        totals[r.teamId].tp+=r.tp||0;
+        totals[r.teamId].matches+=1;
       }
     });
   });
 
-  const ranked = Object.values(totals).sort((a, b) => b.tp - a.tp);
+  const ranked=Object.values(totals).sort((a,b)=>b.tp-a.tp);
+  const medal=r=>r===1?"🥇":r===2?"🥈":r===3?"🥉":r;
 
-  if (!ranked.length || ranked.every(t => t.matches === 0)) {
-    c.innerHTML = '<div class="empty-state">No match results yet.<br/>Enter scores in the Scoring tab.</div>';
-    return;
-  }
+  const matchesPlayed=allMatches.length;
+  const matchLimit=rules.matchLimit||6;
 
-  const medal = (r) => r === 1 ? "🥇" : r === 2 ? "🥈" : r === 3 ? "🥉" : r;
-
-  c.innerHTML = `
+  c.innerHTML=`
+    <div style="font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-bottom:12px;">
+      ${matchesPlayed} of ${matchLimit} matches played
+      ${rules.tournamentName?`&nbsp;|&nbsp; ${rules.tournamentName}`:""}
+    </div>
     <table class="lb-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Team</th>
-          <th>PP</th>
-          <th>Kills</th>
-          <th>TP</th>
-        </tr>
-      </thead>
+      <thead><tr><th>#</th><th>Team</th><th>PP</th><th>KP</th><th>Kills</th><th>TP</th></tr></thead>
       <tbody>
-        ${ranked.map((t, i) => {
-          const rank = i + 1;
-          return `<tr class="${rank <= 3 ? "rank-" + rank : ""}">
+        ${ranked.map((t,i)=>{
+          const rank=i+1;
+          return`<tr class="${rank<=3?"rank-"+rank:""}">
             <td>${medal(rank)}</td>
             <td>${t.name}</td>
             <td class="pp">${t.pp}</td>
+            <td class="kp">${t.kp}</td>
             <td class="kills">${t.kills}</td>
             <td class="tp">${t.tp}</td>
           </tr>`;
@@ -674,84 +748,179 @@ async function renderLeaderboard() {
     </table>`;
 }
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════
 // KILLBOARD
-// ═══════════════════════════════════════
-async function renderKillboard() {
-  const allMatches = await dbGet("matches", "_ts");
-  const c = document.getElementById("killboardContainer");
-
-  // Aggregate kills per player across all matches
-  const playerKills = {};
-
-  allMatches.forEach(m => {
-    (m.results || []).forEach(r => {
-      Object.entries(r.playerKills || {}).forEach(([player, kills]) => {
-        if (!playerKills[player]) playerKills[player] = { player, team: r.teamName, kills: 0 };
-        playerKills[player].kills += kills;
+// ═══════════════════════════════
+async function renderKillboard(){
+  const allMatches=await dbGetAll("matches");
+  const c=document.getElementById("killboardContainer");
+  const playerKills={};
+  allMatches.forEach(m=>{
+    (m.results||[]).forEach(r=>{
+      Object.entries(r.playerKills||{}).forEach(([player,kills])=>{
+        if(!playerKills[player]) playerKills[player]={player,team:r.teamName,kills:0};
+        playerKills[player].kills+=kills;
       });
     });
   });
-
-  const ranked = Object.values(playerKills).sort((a, b) => b.kills - a.kills);
-
-  if (!ranked.length) {
-    c.innerHTML = '<div class="empty-state">No kill data yet.</div>';
-    return;
-  }
-
-  c.innerHTML = `
+  const ranked=Object.values(playerKills).sort((a,b)=>b.kills-a.kills);
+  if(!ranked.length){c.innerHTML='<div class="empty-state">No kill data yet.</div>';return;}
+  c.innerHTML=`
     <table class="kb-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Player</th>
-          <th>Team</th>
-          <th>Kills</th>
-        </tr>
-      </thead>
+      <thead><tr><th>#</th><th>Player</th><th>Team</th><th>Kills</th></tr></thead>
       <tbody>
-        ${ranked.map((p, i) => `
+        ${ranked.map((p,i)=>`
           <tr>
-            <td>${i + 1}</td>
-            <td style="text-align:left;font-family:var(--font-mono);font-size:13px">${p.player}</td>
-            <td style="text-align:left;font-family:var(--font-mono);font-size:11px;color:var(--muted)">${p.team}</td>
+            <td>${i+1}</td>
+            <td style="text-align:left">${p.player}</td>
+            <td style="text-align:left;color:var(--muted);font-size:11px">${p.team}</td>
             <td class="kill-count">${p.kills}</td>
           </tr>`).join("")}
       </tbody>
     </table>`;
 }
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════
+// MATCH HISTORY
+// ═══════════════════════════════
+async function renderHistory(){
+  const allMatches=await dbGetAll("matches");
+  const c=document.getElementById("historyContainer");
+  document.getElementById("matchCount").textContent=allMatches.length+" match"+(allMatches.length!==1?"es":"");
+
+  if(!allMatches.length){c.innerHTML='<div class="empty-state">No matches submitted yet.</div>';return;}
+
+  // Sort by match number desc (most recent first)
+  const sorted=[...allMatches].sort((a,b)=>b.matchNumber-a.matchNumber);
+
+  c.innerHTML=sorted.map(m=>{
+    const sortedResults=[...(m.results||[])].sort((a,b)=>(a.placement||99)-(b.placement||99));
+    const topTeam=sortedResults[0];
+    return`
+      <div class="history-match">
+        <div class="history-match-header" onclick="toggleHistory(this)">
+          <div>
+            <div class="history-match-title">Match ${m.matchNumber}</div>
+            <div class="history-match-meta">${topTeam?topTeam.teamName+" won":""} &nbsp;|&nbsp; ${sortedResults.length} teams</div>
+          </div>
+          <span style="color:var(--muted);font-size:18px">+</span>
+        </div>
+        <div class="history-match-body">
+          ${sortedResults.map(r=>`
+            <div class="history-result-row">
+              <div>
+                <div class="history-team-name">${r.teamName}</div>
+                <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);margin-top:2px">${r.placement?ordinal(r.placement)+" place":"—"}</div>
+              </div>
+              <div class="history-stats">
+                <span>PP:${r.pp}</span>
+                <span>Kills:${r.totalKills}</span>
+                <span>KP:${r.kp}</span>
+                <span class="ht">${r.tp}</span>
+              </div>
+            </div>`).join("")}
+          <div class="history-actions">
+            <button class="btn-danger btn-sm" onclick="deleteMatch('${m.id}')">Delete Match</button>
+          </div>
+        </div>
+      </div>`;
+  }).join("");
+}
+
+function toggleHistory(header){
+  const body=header.nextElementSibling;
+  const icon=header.querySelector("span");
+  body.classList.toggle("open");
+  icon.textContent=body.classList.contains("open")?"−":"+";
+}
+
+async function deleteMatch(id){
+  if(!confirm("Delete this match? This will affect the leaderboard.")) return;
+  await dbDelete("matches",id);
+  await renderHistory();
+  await renderLeaderboard();
+  showToast("Match deleted");
+}
+
+// ═══════════════════════════════
 // RESET
-// ═══════════════════════════════════════
-async function resetAll() {
-  if (!confirm("Delete ALL match data? Teams and rules stay.")) return;
+// ═══════════════════════════════
+async function resetAll(){
+  if(!confirm("Delete ALL match data? Teams and rules stay.")) return;
   await dbDeleteAll("matches");
-  matches = [];
   await renderLeaderboard();
   showToast("Scores reset");
 }
 
-// ═══════════════════════════════════════
-// WIRE UP BUTTONS
-// ═══════════════════════════════════════
-document.getElementById("saveSetupBtn").addEventListener("click", saveSetup);
-document.getElementById("addPlacementBtn").addEventListener("click", addPlacementRow);
-document.getElementById("openAddTeam").addEventListener("click", openAddTeamModal);
-document.getElementById("cancelAddTeam").addEventListener("click", closeAddTeamModal);
-document.getElementById("saveTeamBtn").addEventListener("click", saveTeam);
-document.getElementById("addPlayerBtn").addEventListener("click", addPlayerRow);
-document.getElementById("addTeamModal").addEventListener("click", function(e) { if (e.target === this) closeAddTeamModal(); });
-document.getElementById("submitMatchBtn").addEventListener("click", submitMatch);
-document.getElementById("resetBtn").addEventListener("click", resetAll);
+// ═══════════════════════════════
+// SHARE
+// ═══════════════════════════════
+async function shareLeaderboard(){
+  const allMatches=await dbGetAll("matches");
+  const totals={};
+  teams.forEach(t=>{totals[t.id]={name:t.name,pp:0,kills:0,kp:0,tp:0};});
+  allMatches.forEach(m=>{
+    (m.results||[]).forEach(r=>{
+      if(totals[r.teamId]){totals[r.teamId].pp+=r.pp||0;totals[r.teamId].kills+=r.totalKills||0;totals[r.teamId].kp+=r.kp||0;totals[r.teamId].tp+=r.tp||0;}
+    });
+  });
+  const ranked=Object.values(totals).sort((a,b)=>b.tp-a.tp);
+  const lines=[
+    rules.tournamentName?"🏆 "+rules.tournamentName:"🏆 TOURNAMENT LEADERBOARD",
+    "─────────────────────",
+    "#  TEAM           PP   KP  KILLS   TP",
+    ...ranked.map((t,i)=>`${i+1}. ${t.name.padEnd(14)} ${String(t.pp).padStart(4)} ${String(t.kp).padStart(4)} ${String(t.kills).padStart(6)} ${String(t.tp).padStart(5)}`),
+    "─────────────────────",
+    `${allMatches.length} matches played`,
+    "via alphasquadzone.netlify.app"
+  ];
+  const text=lines.join("\n");
+  if(navigator.share){navigator.share({title:"Tournament Leaderboard",text});}
+  else{navigator.clipboard.writeText(text).then(()=>showToast("Copied to clipboard!"));}
+}
 
-// ═══════════════════════════════════════
+async function shareKillboard(){
+  const allMatches=await dbGetAll("matches");
+  const playerKills={};
+  allMatches.forEach(m=>{(m.results||[]).forEach(r=>{Object.entries(r.playerKills||{}).forEach(([p,k])=>{if(!playerKills[p]) playerKills[p]={player:p,team:r.teamName,kills:0};playerKills[p].kills+=k;});});});
+  const ranked=Object.values(playerKills).sort((a,b)=>b.kills-a.kills);
+  const lines=[
+    "💀 KILL BOARD",
+    "─────────────────────",
+    ...ranked.map((p,i)=>`${i+1}. ${p.player} (${p.team}) — ${p.kills} kills`),
+    "─────────────────────",
+    "via alphasquadzone.netlify.app"
+  ];
+  const text=lines.join("\n");
+  if(navigator.share){navigator.share({title:"Kill Board",text});}
+  else{navigator.clipboard.writeText(text).then(()=>showToast("Copied to clipboard!"));}
+}
+
+// ═══════════════════════════════
+// WIRE UP
+// ═══════════════════════════════
+document.getElementById("saveSetupBtn").addEventListener("click",saveSetup);
+document.getElementById("addPlacementBtn").addEventListener("click",addPlacementRow);
+document.getElementById("openAddTeam").addEventListener("click",openAddTeamModal);
+document.getElementById("cancelAddTeam").addEventListener("click",closeAddTeamModal);
+document.getElementById("saveTeamBtn").addEventListener("click",saveTeam);
+document.getElementById("addPlayerBtn").addEventListener("click",addPlayerRow);
+document.getElementById("addTeamModal").addEventListener("click",function(e){if(e.target===this)closeAddTeamModal();});
+document.getElementById("submitMatchBtn").addEventListener("click",submitMatch);
+document.getElementById("confirmSaveBtn").addEventListener("click",confirmSave);
+document.getElementById("cancelConfirm").addEventListener("click",()=>document.getElementById("confirmModal").classList.remove("open"));
+document.getElementById("confirmModal").addEventListener("click",function(e){if(e.target===this)this.classList.remove("open");});
+document.getElementById("resetBtn").addEventListener("click",resetAll);
+document.getElementById("shareLeaderboardBtn").addEventListener("click",shareLeaderboard);
+document.getElementById("shareKillboardBtn").addEventListener("click",shareKillboard);
+document.getElementById("tournamentNameInput").addEventListener("input",updateTournamentNameDisplay);
+
+// ═══════════════════════════════
 // BOOT
-// ═══════════════════════════════════════
-(async () => {
-  try { await loadRules(); } catch(e) { renderSetupForm(); }
-  try { await loadTeams(); } catch(e) { renderTeams(); }
+// ═══════════════════════════════
+(async()=>{
+  try{await loadRules();}catch(e){renderSetupForm();}
+  try{await loadTeams();}catch(e){renderTeams();}
   renderScoreEntry();
 })();
 </script>
